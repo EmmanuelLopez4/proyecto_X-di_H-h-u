@@ -45,6 +45,45 @@ class LoginUsuario(BaseModel):
     correo: EmailStr
     password: str
 
+class CambioPassword(BaseModel):
+    email: str
+    nueva_password: str
+
+@app.post("/api/cambiar-password", summary="Actualizar contraseña del usuario", tags=["Autenticación"])
+def cambiar_password(datos: CambioPassword):
+    try:
+        correo_limpio = datos.email.strip()
+        
+        response = supabase.table("usuarios").select("id_usu").eq("correo", correo_limpio).execute()
+        
+        if not response.data:
+            raise HTTPException(status_code=404, detail="No se encontró una cuenta registrada con ese correo.")
+            
+        id_usuario = response.data[0]["id_usu"]
+        
+        supabase.auth.admin.update_user_by_id(
+            id_usuario,
+            {"password": datos.nueva_password}
+        )
+        
+        return {"status": "success", "message": "Contraseña actualizada correctamente."}
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/cambiar-password", tags=["Interfaz Gráfica"])
+def pagina_cambiar_password():
+    """
+    Ruta para servir la vista web de cambio de contraseña
+    """
+    ruta_html = os.path.join(
+        os.path.dirname(__file__),
+        "frontend",
+        "cambiar_contra.html"
+    )
+    if os.path.exists(ruta_html):
+        return FileResponse(ruta_html)
+    return {"error": "No se encontró cambiar_contra.html"}
 
 
 @app.get("/", tags=["Interfaz Gráfica"])
@@ -94,6 +133,7 @@ def pagina_curso_especifico(categoria: str):
         "status": "Online",
         "error": "No se encontró aprendizaje.html"
     }
+
 
 
 @app.post("/api/auth/registro", summary="Registrar un nuevo estudiante", tags=["Autenticación"])
