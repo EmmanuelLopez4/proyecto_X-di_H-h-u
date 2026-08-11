@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="/frontend/js/proteccion.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos - Xädi Hñähñu</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/frontend/js/tailwind-config.js" defer></script>
+    
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif !important; 
+            background-color: #fdf9f2 !important; 
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.1); border-radius: 10px; }
+    </style>
+</head>
+<body class="h-screen overflow-hidden flex flex-col text-on-surface">
+
+    <header class="h-16 w-full flex items-center justify-between px-8 bg-surface-container border-b-4 border-primary-container/20 shadow-sm z-50">
+        <div class="flex items-center gap-4">
+            <img src="/static/imagenes/logo.png" alt="Logo Xädi Hñähñu" class="h-16 w-auto max-h-16 object-contain scale-125 origin-left" onerror="this.src='https://placehold.co/150x150?text=Logo';">
+            <span class="text-2xl font-extrabold text-primary tracking-tight">Xädi Hñähñu</span>
+        </div>
+        
+        <div class="flex items-center gap-8">
+            <nav class="flex gap-6 items-center">
+                <a href="/" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Inicio</a>
+                <a href="/memorama" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Minijuego</a>
+                <a href="/proyecto" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Proyecto</a>
+                <a href="/equipo" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Equipo</a>
+                <a href="/consejos" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Consejos</a>
+                <a id="boton-salir" href="javascript:void(0)" class="text-error font-medium hover:text-error/80 transition-colors py-1 ml-2">Salir</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        
+        <aside class="w-64 bg-surface-container-low border-r border-outline-variant flex flex-col py-6 custom-scrollbar overflow-y-auto">
+            <div class="px-6 mb-8">
+                <h2 class="text-primary font-extrabold text-xl mb-1">Menú</h2>
+                <p class="text-xs text-on-surface-variant font-medium">Plataforma educativa</p>
+            </div>
+            
+            <nav class="flex flex-col gap-1 px-3">
+                <a href="/cursos" class="flex items-center gap-4 w-full px-4 py-3 rounded-xl bg-secondary text-white shadow-md transition-all">
+                    <span class="material-icons">grid_view</span>
+                    <span class="font-bold">Elige un Curso</span>
+                </a>
+                
+                <a href="/consejos" class="flex items-center gap-4 w-full px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all">
+                    <span class="material-icons">lightbulb</span>
+                    <span class="font-bold">Consejos Hñähñu</span>
+                </a>
+            </nav>   
+        </aside>
+
+        <main class="flex-1 overflow-y-auto custom-scrollbar bg-surface/30 p-10">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-10">
+                    <h2 class="text-4xl font-extrabold text-primary mb-2">Elige un curso para comenzar</h2>
+                    <p class="text-on-surface-variant font-medium">Selecciona la categoría de vocabulario que deseas estudiar hoy.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <a href="/cursos/saludos" class="bg-white p-6 rounded-3xl shadow-md border border-primary/5 hover:shadow-xl hover:scale-105 transition-all flex items-center gap-4 group">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-icons text-3xl">waving_hand</span>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-lg text-on-surface">Saludos</h3>
+                            <p class="text-xs text-on-surface-variant">Expresiones básicas</p>
+                        </div>
+                    </a>
+
+                    <a href="/cursos/animales" class="bg-white p-6 rounded-3xl shadow-md border border-primary/5 hover:shadow-xl hover:scale-105 transition-all flex items-center gap-4 group">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-icons text-3xl">pets</span>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-lg text-on-surface">Animales</h3>
+                            <p class="text-xs text-on-surface-variant">Fauna de la región</p>
+                        </div>
+                    </a>
+
+                    <a href="/cursos/vestimenta" class="bg-white p-6 rounded-3xl shadow-md border border-primary/5 hover:shadow-xl hover:scale-105 transition-all flex items-center gap-4 group">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-icons text-3xl">checkroom</span>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-lg text-on-surface">Vestimenta</h3>
+                            <p class="text-xs text-on-surface-variant">Ropa tradicional</p>
+                        </div>
+                    </a>
+
+                    <a href="/cursos/numeros" class="bg-white p-6 rounded-3xl shadow-md border border-primary/5 hover:shadow-xl hover:scale-105 transition-all flex items-center gap-4 group">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-icons text-3xl">format_list_numbered</span>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-lg text-on-surface">Números</h3>
+                            <p class="text-xs text-on-surface-variant">Conteo y cantidades</p>
+                        </div>
+                    </a>
+
+                    <a href="/cursos/acciones" class="bg-white p-6 rounded-3xl shadow-md border border-primary/5 hover:shadow-xl hover:scale-105 transition-all flex items-center gap-4 group">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-icons text-3xl">directions_run</span>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-lg text-on-surface">Acciones</h3>
+                            <p class="text-xs text-on-surface-variant">Verbos cotidianos</p>
+                        </div>
+                    </a>
+
+                    <a href="/cursos/ubicaciones" class="bg-white p-6 rounded-3xl shadow-md border border-primary/5 hover:shadow-xl hover:scale-105 transition-all flex items-center gap-4 group">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-icons text-3xl">location_on</span>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-lg text-on-surface">Ubicaciones</h3>
+                            <p class="text-xs text-on-surface-variant">Lugares y espacios</p>
+                        </div>
+                    </a>
+
+                    <a href="/cursos/personas" class="bg-white p-6 rounded-3xl shadow-md border border-primary/5 hover:shadow-xl hover:scale-105 transition-all flex items-center gap-4 group">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-icons text-3xl">family_restroom</span>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-lg text-on-surface">Personas y Familia</h3>
+                            <p class="text-xs text-on-surface-variant">Miembros de la familia</p>
+                        </div>
+                    </a>
+
+                    <a href="/cursos/utensilios" class="bg-white p-6 rounded-3xl shadow-md border border-primary/5 hover:shadow-xl hover:scale-105 transition-all flex items-center gap-4 group">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-icons text-3xl">flatware</span>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-lg text-on-surface">Utensilios</h3>
+                            <p class="text-xs text-on-surface-variant">Herramientas y cocina</p>
+                        </div>
+                    </a>
+
+                    <a href="/cursos/cuerpo" class="bg-white p-6 rounded-3xl shadow-md border border-primary/5 hover:shadow-xl hover:scale-105 transition-all flex items-center gap-4 group">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-icons text-3xl">accessibility_new</span>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-lg text-on-surface">Partes del Cuerpo</h3>
+                            <p class="text-xs text-on-surface-variant">Anatomía humana</p>
+                        </div>
+                    </a>
+
+                    <a href="/cursos/emociones" class="bg-white p-6 rounded-3xl shadow-md border border-primary/5 hover:shadow-xl hover:scale-105 transition-all flex items-center gap-4 group">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-icons text-3xl">sentiment_satisfied</span>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-lg text-on-surface">Emociones</h3>
+                            <p class="text-xs text-on-surface-variant">Estados de ánimo</p>
+                        </div>
+                    </a>
+
+                    <a href="/cursos/tiempo" class="bg-white p-6 rounded-3xl shadow-md border border-primary/5 hover:shadow-xl hover:scale-105 transition-all flex items-center gap-4 group">
+                        <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-icons text-3xl">schedule</span>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-lg text-on-surface">Tiempo y Cantidad</h3>
+                            <p class="text-xs text-on-surface-variant">Momentos y proporciones</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener("click", (e) => {
+            if (e.target.matches('#boton-salir') || e.target.closest('#boton-salir')) {
+                e.preventDefault();
+                localStorage.removeItem("xadi_sesion");
+                window.location.replace("/login");
+            }
+        });
+    </script>
+</body>
+</html>

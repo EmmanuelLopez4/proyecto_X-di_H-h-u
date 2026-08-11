@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido - Xädi Hñähñu</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="/frontend/js/tailwind-config.js" defer></script>
+    
+    <link rel="stylesheet" href="/frontend/css/estilos.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between text-on-surface">
+
+    <header class="h-20 w-full flex items-center justify-between px-12 bg-surface-container/60 backdrop-blur-md border-b border-primary/10 shadow-sm">
+        <div class="flex items-center gap-4">
+            <img src="/static/imagenes/logo.png" alt="Logo Xädi Hñähñu" class="h-16 w-auto max-h-16 object-contain scale-105 origin-left" onerror="this.src='https://placehold.co/150x150?text=Logo';">
+            <span class="text-2xl font-extrabold text-primary tracking-tight">Xädi Hñähñu</span>
+        </div>
+        <a href="/cursos" class="px-6 py-2.5 rounded-xl bg-white border border-primary/20 text-primary font-bold hover:bg-primary/5 transition-all shadow-sm">
+            Acceder al Catálogo
+        </a>
+    </header>
+
+    <main class="flex-1 max-w-6xl mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        
+        <div class="flex flex-col gap-6 text-center md:text-left">
+            <span class="text-xs font-extrabold text-secondary uppercase tracking-[0.2em] bg-secondary/10 px-4 py-1.5 rounded-full w-fit mx-auto md:mx-0">
+                Plataforma de Aprendizaje
+            </span>
+            <h2 class="text-5xl md:text-6xl font-extrabold text-on-surface leading-tight tracking-tight">
+                Preservando la lengua <span class="text-primary">Hñähñu</span>
+            </h2>
+            <p class="text-base text-on-surface-variant leading-relaxed font-medium max-w-lg">
+                Bienvenido a <strong>Xädi Hñähñu</strong>, un sistema diseñado modularmente para estudiantes e interesados en aprender y preservar las variantes lingüísticas del Otomí a través de recursos multimedia interactivos.
+            </p>
+            
+            <div class="mt-4">
+                <a href="/cursos" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-primary text-white font-extrabold text-lg shadow-xl shadow-primary/20 hover:brightness-110 active:scale-95 transition-all">
+                    <span>Iniciar Curso</span>
+                    <span class="material-icons">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="flex justify-center">
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-2xl border border-primary/5 max-w-md text-center flex flex-col gap-6 transform hover:rotate-1 transition-transform">
+                <div class="w-20 h-20 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto">
+                    <span class="material-icons text-4xl">translate</span>
+                </div>
+                <h3 class="text-2xl font-extrabold">Aprendizaje Práctico</h3>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                    Accede a módulos multimedia interactivos que incluyen vocabulario en audio de alta fidelidad, imágenes descriptivas e información de contexto cultural.
+                </p>
+                <div class="flex gap-4 justify-center text-xs font-bold text-on-surface-variant/60">
+                    <span class="flex items-center gap-1"><span class="material-icons text-sm text-secondary">check_circle</span> Vestimenta</span>
+                    <span class="flex items-center gap-1"><span class="material-icons text-sm text-secondary">check_circle</span> Animales</span>
+                    <span class="flex items-center gap-1"><span class="material-icons text-sm text-secondary">check_circle</span> Saludos</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/frontend/js/aprendizaje.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="/frontend/js/proteccion.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consejos de la Lengua Hñähñu - Xädi Hñähñu</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/frontend/js/tailwind-config.js" defer></script>
+    
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif !important; 
+            background-color: #fdf9f2 !important; 
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.1); border-radius: 10px; }
+    </style>
+</head>
+<body class="h-screen overflow-hidden flex flex-col text-on-surface">
+
+    <header class="h-16 w-full flex items-center justify-between px-8 bg-surface-container border-b-4 border-primary-container/20 shadow-sm z-50">
+        <div class="flex items-center gap-4">
+            <img src="/static/imagenes/logo.png" alt="Logo Xädi Hñähñu" class="h-16 w-auto max-h-16 object-contain scale-125 origin-left" onerror="this.src='https://placehold.co/150x150?text=Logo';">
+            <span class="text-2xl font-extrabold text-primary tracking-tight">Xädi Hñähñu</span>
+        </div>
+        
+        <div class="flex items-center gap-8">
+            <nav class="flex gap-6 items-center">
+                <a href="/" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Inicio</a>
+                <a href="/memorama" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Minijuego</a>
+                <a href="/proyecto" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Proyecto</a>
+                <a href="/equipo" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Equipo</a>
+                <a id="boton-salir" href="javascript:void(0)" class="text-error font-medium hover:text-error/80 transition-colors py-1 ml-2">Salir</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        
+        <aside class="w-64 bg-surface-container-low border-r border-outline-variant flex flex-col py-6 custom-scrollbar overflow-y-auto">
+            <div class="px-6 mb-8">
+                <h2 class="text-primary font-extrabold text-xl mb-1">Secciones</h2>
+                <p class="text-xs text-on-surface-variant font-medium">Navegación general</p>
+            </div>
+            
+            <nav class="flex flex-col gap-1 px-3">
+                <a href="/cursos" class="flex items-center gap-4 w-full px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all">
+                    <span class="material-icons">school</span>
+                    <span class="font-bold">Cursos de Vocabulario</span>
+                </a>
+                
+                <a href="/consejos" class="flex items-center gap-4 w-full px-4 py-3 rounded-xl bg-secondary text-white shadow-md transition-all">
+                    <span class="material-icons">lightbulb</span>
+                    <span class="font-bold">Consejos Hñähñu</span>
+                </a>
+            </nav>   
+        </aside>
+
+        <main class="flex-1 overflow-y-auto custom-scrollbar bg-surface/30 p-10">
+            <div class="flex items-center gap-2 text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-8">
+                <span class="material-icons text-sm">home</span>
+                <span>General</span>
+                <span class="material-icons text-sm">chevron_right</span>
+                <span class="text-primary">Consejos sobre el Otomí</span>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-6">
+                
+                <div class="text-center mb-10">
+                    <h2 class="text-4xl font-extrabold text-primary mb-2">Consejos para Aprender Hñähñu</h2>
+                    <p class="text-on-surface-variant font-medium">Recomendaciones generales para mejorar tu pronunciación y comprensión cultural.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border-l-8 border-primary flex gap-6 items-start">
+                    <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                        <span class="material-icons text-3xl">volume_up</span>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-extrabold text-primary mb-2">1. Presta atención a las glotales y apóstrofes (')</h4>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">
+                            En el hñähñu, los apóstrofes (como en <em>hats’i</em> o <em>n’ihi</em>) indican un corte glotal, es decir, una pequeña pausa o golpe de aire en la garganta. No los ignores, ya que pueden cambiar por completo el significado de una palabra.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border-l-8 border-secondary flex gap-6 items-start">
+                    <div class="w-14 h-14 shrink-0 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center">
+                        <span class="material-icons text-3xl">repeat</span>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-extrabold text-secondary mb-2">2. La constancia supera a la memorización</h4>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">
+                            Dedícale al menos 10 o 15 minutos al día a repasar los módulos de vocabulario. Repetir en voz alta las palabras ayuda a que tu aparato fonador se acostumbre a los sonidos característicos de la lengua otomí.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border-l-8 border-primary flex gap-6 items-start">
+                    <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
+                        <span class="material-icons text-3xl">diversity_3</span>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-extrabold text-primary mb-2">3. Conéctate con el contexto cultural</h4>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">
+                            Una lengua no es solo un conjunto de palabras, sino una forma de ver y entender el mundo. Intenta asociar cada término con su uso cotidiano y la riqueza de la comunidad hablante en la región.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener("click", (e) => {
+            if (e.target.matches('#boton-salir') || e.target.closest('#boton-salir')) {
+                e.preventDefault();
+                localStorage.removeItem("xadi_sesion");
+                window.location.replace("/login");
+            }
+        });
+    </script>
+</body>
+</html>

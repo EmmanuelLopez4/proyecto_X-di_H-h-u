@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="/frontend/js/proteccion.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca del Proyecto - Xädi Hñähñu</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/frontend/js/tailwind-config.js" defer></script>
+    
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif !important; 
+            background-color: #fdf9f2 !important; 
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="h-screen overflow-hidden flex flex-col text-on-surface">
+
+    <header class="h-16 w-full flex items-center justify-between px-8 bg-surface-container border-b-4 border-primary-container/20 shadow-sm z-50">
+        <div class="flex items-center gap-4">
+            <img src="/static/imagenes/logo.png" alt="Logo Xädi Hñähñu" class="h-16 w-auto max-h-16 object-contain scale-105 origin-left" onerror="this.src='https://placehold.co/150x150?text=Logo';">
+            <span class="text-2xl font-extrabold text-primary tracking-tight">Xädi Hñähñu</span>
+        </div>
+        
+        <div class="flex items-center gap-8">
+            <nav class="flex gap-6 items-center">
+                <a href="/" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">
+                    Inicio
+                </a>
+
+                <a href="/memorama" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">
+                    Minijuego
+                </a>
+
+                <a href="#" class="text-primary font-bold border-b-2 border-primary py-1 transition-colors">
+                    Proyecto
+                </a>
+                <a href="/equipo" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">
+                    Equipo
+                </a>
+                <a id="boton-salir" href="javascript:void(0)" class="text-error font-medium hover:text-error/80 transition-colors py-1 ml-2">
+                    Salir
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-12 flex justify-center items-center">
+        <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            
+            <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-xl border border-primary/5 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-6">
+                        <span class="material-icons text-3xl">rocket_launch</span>
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-primary mb-4 tracking-tight">Objetivo del proyecto</h2>
+                    <p class="text-sm md:text-base text-on-surface-variant leading-relaxed font-medium">
+                        Desarrollar un prototipo inteligente que facilite la comunicación entre personas que usan lenguaje de señas y personas oyentes. Mediante el uso de una Raspberry Pi, una cámara de video y una aplicación móvil, buscamos eficientar y facilitar la comunicación.
+                    </p>
+                </div>
+                <div class="mt-6 flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider">
+                    <span>Tecnología con propósito</span>
+                    <span class="material-icons text-sm">bolt</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-xl border border-error/5 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-error/10 text-error flex items-center justify-center mb-6">
+                        <span class="material-icons text-3xl">report_problem</span>
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-error mb-4 tracking-tight">El problema</h2>
+                    <p class="text-sm md:text-base text-on-surface-variant leading-relaxed font-medium">
+                        La problemática central identificada es la dificultad de comunicación que enfrentan las personas con discapacidad auditiva en su interacción diaria con el entorno oyente. Las barreras incluyen la falta de conocimiento general del lenguaje de señas y la escasez de intérpretes calificados.
+                    </p>
+                </div>
+                <div class="mt-6 flex items-center gap-2 text-xs font-bold text-error uppercase tracking-wider">
+                    <span>Inclusión social</span>
+                    <span class="material-icons text-sm">diversity_3</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="/frontend/js/aprendizaje.js?v=6"></script>
+</body>
+</html>

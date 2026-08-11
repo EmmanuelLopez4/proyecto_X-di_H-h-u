@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="/frontend/js/proteccion.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorama Hñähñu - Xädi Hñähñu</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/frontend/js/tailwind-config.js" defer></script>
+    
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif !important; 
+            background-color: #fdf9f2 !important; 
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.1); border-radius: 10px; }
+
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+    </style>
+</head>
+<body class="h-screen overflow-hidden flex flex-col text-on-surface">
+
+    <header class="h-16 w-full flex items-center justify-between px-8 bg-surface-container border-b-4 border-primary-container/20 shadow-sm z-50 shrink-0">
+        <div class="flex items-center gap-4">
+            <img src="/static/imagenes/logo.png" alt="Logo Xädi Hñähñu" class="h-16 w-auto max-h-16 object-contain scale-125 origin-left" onerror="this.src='https://placehold.co/150x150?text=Logo';">
+            <span class="text-2xl font-extrabold text-primary tracking-tight">Xädi Hñähñu</span>
+        </div>
+        
+        <div class="flex items-center gap-8">
+            <nav class="flex gap-6 items-center">
+                <a href="/" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Inicio</a>
+                <a href="/cursos" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Cursos</a>
+                <a href="/proyecto" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Proyecto</a>
+                <a href="/equipo" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Equipo</a>
+                <a href="/consejos" class="text-on-surface-variant font-medium hover:text-primary transition-colors py-1">Consejos</a>
+                <a href="/memorama" class="text-primary font-bold border-b-2 border-primary py-1 transition-colors">Minijuego</a>
+                <a id="boton-salir" href="javascript:void(0)" class="text-error font-medium hover:text-error/80 transition-colors py-1 ml-2">Salir</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto custom-scrollbar bg-surface/30 p-6 md:p-8 flex flex-col items-center justify-start">
+        
+        <div id="pantalla-seleccion" class="max-w-3xl w-full my-auto text-center">
+            <div class="w-20 h-20 mx-auto rounded-3xl bg-primary/10 text-primary flex items-center justify-center mb-6 shadow-sm">
+                <span class="material-icons text-4xl">extension</span>
+            </div>
+            <h2 class="text-4xl font-extrabold text-primary mb-3">Memorama de Vocabulario</h2>
+            <p class="text-on-surface-variant font-medium mb-10 max-w-lg mx-auto">
+                Pon a prueba tu memoria asociando las imágenes con su respectiva palabra en hñähñu. Las parejas correctas quedarán visibles como material de repaso.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl mx-auto">
+                <button onclick="iniciarJuego(8)" class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-primary/10 hover:border-primary hover:shadow-2xl hover:scale-105 transition-all flex flex-col items-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+                        <span class="material-icons text-3xl">grid_view</span>
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-on-surface mb-1">Modo 4 × 4</h3>
+                    <p class="text-xs text-on-surface-variant font-medium">16 Cartas (8 Parejas)</p>
+                    <span class="mt-6 px-5 py-2 rounded-xl bg-secondary/10 text-secondary font-bold text-xs group-hover:bg-secondary group-hover:text-white transition-colors">Jugar 4×4</span>
+                </button>
+
+                <button onclick="iniciarJuego(18)" class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-primary/10 hover:border-primary hover:shadow-2xl hover:scale-105 transition-all flex flex-col items-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span class="material-icons text-3xl">apps</span>
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-on-surface mb-1">Modo 6 × 6</h3>
+                    <p class="text-xs text-on-surface-variant font-medium">36 Cartas (18 Parejas)</p>
+                    <span class="mt-6 px-5 py-2 rounded-xl bg-primary/10 text-primary font-bold text-xs group-hover:bg-primary group-hover:text-white transition-colors">Jugar 6×6</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="pantalla-juego" class="w-full max-w-5xl hidden flex flex-col items-center">
+            
+            <div class="w-full bg-white p-4 px-8 rounded-2xl shadow-md border border-primary/5 flex flex-wrap items-center justify-between gap-4 mb-6">
+                <div class="flex items-center gap-6">
+                    <div>
+                        <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Parejas</p>
+                        <p id="contador-parejas" class="text-xl font-extrabold text-primary">0 / 8</p>
+                    </div>
+                    <div class="w-px h-8 bg-outline-variant/40"></div>
+                    <div>
+                        <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Intentos</p>
+                        <p id="contador-intentos" class="text-xl font-extrabold text-on-surface">0</p>
+                    </div>
+                    <div class="w-px h-8 bg-outline-variant/40"></div>
+                    <div>
+                        <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Tiempo</p>
+                        <p id="contador-tiempo" class="text-xl font-extrabold text-secondary">00:00</p>
+                    </div>
+                </div>
+
+                <button onclick="volverSeleccion()" class="flex items-center gap-2 px-4 py-2 rounded-xl border border-error/30 text-error font-bold text-xs hover:bg-error/5 transition-all">
+                    <span class="material-icons text-sm">exit_to_app</span> Salir al Menú
+                </button>
+            </div>
+
+            <div id="tablero-cartas" class="grid gap-4 w-full justify-center mb-8"></div>
+        </div>
+
+        <div id="modal-victoria" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-2xl border border-primary/10 max-w-md w-full text-center">
+                <div class="w-20 h-20 mx-auto rounded-full bg-primary/10 text-primary flex items-center justify-center mb-6">
+                    <span class="material-icons text-4xl">emoji_events</span>
+                </div>
+                <h3 class="text-3xl font-extrabold text-primary mb-2">¡Felicitaciones!</h3>
+                <p class="text-on-surface-variant font-medium mb-6">Completaste el memorama y repasaste con éxito el vocabulario en hñähñu.</p>
+                
+                <div class="bg-surface/50 p-4 rounded-2xl mb-8 grid grid-cols-2 gap-4 text-center">
+                    <div>
+                        <p class="text-xs text-on-surface-variant uppercase font-bold">Tiempo total</p>
+                        <p id="stat-tiempo" class="text-lg font-extrabold text-primary">00:00</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-on-surface-variant uppercase font-bold">Intentos</p>
+                        <p id="stat-intentos" class="text-lg font-extrabold text-on-surface">0</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <button onclick="volverSeleccion()" class="flex-1 py-3 px-4 rounded-xl border-2 border-primary/20 text-primary font-bold hover:bg-primary/5 transition-all">
+                        Elegir Modo
+                    </button>
+                    <button onclick="reiniciarPartida()" class="flex-1 py-3 px-4 rounded-xl bg-primary text-white font-bold shadow-md hover:brightness-110 transition-all">
+                        Jugar de Nuevo
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const API_URL = "";
+        let cartas = [];
+        let primeraCarta = null;
+        let segundaCarta = null;
+        let bloqueoTablero = false;
+        let parejasEncontradas = 0;
+        let totalParejasObjetivo = 8;
+        let intentos = 0;
+        let tiempoSegundos = 0;
+        let temporizadorIntervalo = null;
+
+        const paletaMarcos = [
+            { border: "border-blue-500", bg: "bg-blue-50/60 shadow-blue-100" },      
+            { border: "border-emerald-500", bg: "bg-emerald-50/60 shadow-emerald-100" }, 
+            { border: "border-purple-500", bg: "bg-purple-50/60 shadow-purple-100" },   
+            { border: "border-amber-500", bg: "bg-amber-50/60 shadow-amber-100" },      
+            { border: "border-rose-500", bg: "bg-rose-50/60 shadow-rose-100" },         
+            { border: "border-cyan-500", bg: "bg-cyan-50/60 shadow-cyan-100" },         
+            { border: "border-indigo-500", bg: "bg-indigo-50/60 shadow-indigo-100" },  
+            { border: "border-teal-500", bg: "bg-teal-50/60 shadow-teal-100" },         
+            { border: "border-orange-500", bg: "bg-orange-50/60 shadow-orange-100" },   
+            { border: "border-fuchsia-500", bg: "bg-fuchsia-50/60 shadow-fuchsia-100" }, 
+            { border: "border-lime-600", bg: "bg-lime-50/60 shadow-lime-100" },        
+            { border: "border-sky-500", bg: "bg-sky-50/60 shadow-sky-100" },            
+            { border: "border-violet-500", bg: "bg-violet-50/60 shadow-violet-100" },   
+            { border: "border-yellow-600", bg: "bg-yellow-50/60 shadow-yellow-100" },   
+            { border: "border-red-500", bg: "bg-red-50/60 shadow-red-100" },            
+            { border: "border-teal-600", bg: "bg-teal-50/60 shadow-teal-100" },         
+            { border: "border-pink-500", bg: "bg-pink-50/60 shadow-pink-100" },         
+            { border: "border-slate-600", bg: "bg-slate-100/80 shadow-slate-200" }    
+        ];
+
+        async function iniciarJuego(limite) {
+            totalParejasObjetivo = limite;
+            parejasEncontradas = 0;
+            intentos = 0;
+            tiempoSegundos = 0;
+            primeraCarta = null;
+            segundaCarta = null;
+            bloqueoTablero = false;
+
+            document.getElementById("contador-parejas").innerText = `0 / ${totalParejasObjetivo}`;
+            document.getElementById("contador-intentos").innerText = "0";
+            document.getElementById("contador-tiempo").innerText = "00:00";
+            document.getElementById("modal-victoria").classList.add("hidden");
+
+            try {
+                const response = await fetch(`${API_URL}/api/memorama/aleatorio?limite=${limite}`);
+                const data = await response.json();
+
+                if (!response.ok) throw new Error(data.detail || "Error al obtener palabras");
+
+                construirTablero(data.parejas);
+
+                document.getElementById("pantalla-seleccion").classList.add("hidden");
+                document.getElementById("pantalla-juego").classList.remove("hidden");
+
+                if (temporizadorIntervalo) clearInterval(temporizadorIntervalo);
+                temporizadorIntervalo = setInterval(() => {
+                    tiempoSegundos++;
+                    let mins = Math.floor(tiempoSegundos / 60).toString().padStart(2, '0');
+                    let segs = (tiempoSegundos % 60).toString().padStart(2, '0');
+                    document.getElementById("contador-tiempo").innerText = `${mins}:${segs}`;
+                }, 1000);
+
+            } catch (error) {
+                console.error(error);
+                alert("Hubo un error al cargar las palabras para el memorama. Asegúrate de tener datos en la base de datos.");
+            }
+        }
+
+        function construirTablero(parejas) {
+            cartas = [];
+            
+            parejas.forEach((item, indexColor) => {
+                const tiempoRompeCache = new Date().getTime();
+                const estiloColor = paletaMarcos[indexColor % paletaMarcos.length];
+                
+                cartas.push({
+                    pairId: item.id_pal,
+                    tipo: 'imagen',
+                    contenido: `${API_URL}${item.imagen_url}?v=${tiempoRompeCache}`,
+                    encontrada: false,
+                    estilo: estiloColor
+                });
+
+                cartas.push({
+                    pairId: item.id_pal,
+                    tipo: 'otomi',
+                    contenido: item.otomi,
+                    encontrada: false,
+                    estilo: estiloColor
+                });
+            });
+
+            for (let i = cartas.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cartas[i], cartas[j]] = [cartas[j], cartas[i]];
+            }
+
+            const tablero = document.getElementById("tablero-cartas");
+            tablero.innerHTML = "";
+            
+            if (totalParejasObjetivo === 8) {
+                tablero.className = "grid grid-cols-4 gap-4 w-full max-w-2xl mx-auto";
+            } else {
+                tablero.className = "grid grid-cols-6 gap-3 w-full max-w-4xl mx-auto";
+            }
+
+            cartas.forEach((carta, index) => {
+                const cardElement = document.createElement("div");
+                cardElement.className = `perspective-1000 cursor-pointer h-32 md:h-36 select-none`;
+                cardElement.dataset.index = index;
+
+                cardElement.innerHTML = `
+                    <div class="relative w-full h-full duration-500 transform-style-3d card-inner rounded-2xl shadow-md border border-primary/10">
+                        <!-- Lado trasero (Boca abajo) -->
+                        <div class="absolute inset-0 w-full h-full bg-primary text-white rounded-2xl flex flex-col items-center justify-center backface-hidden shadow-inner hover:brightness-110 transition-all">
+                            <span class="material-icons text-3xl">help_outline</span>
+                            <span class="text-[10px] font-bold uppercase tracking-widest mt-1">Xädi</span>
+                        </div>
+                        <!-- Lado delantero (Boca arriba) -->
+                        <div class="absolute inset-0 w-full h-full bg-white rounded-2xl flex items-center justify-center backface-hidden rotate-y-180 p-3 shadow-sm card-front-face">
+                            ${carta.tipo === 'imagen' 
+                                ? `<img src="${carta.contenido}" alt="Ilustración" class="max-h-full max-w-full object-contain pointer-events-none">`
+                                : `<span class="text-xl md:text-2xl font-extrabold text-primary text-center tracking-tight">${carta.contenido}</span>`
+                            }
+                        </div>
+                    </div>
+                `;
+
+                cardElement.addEventListener("click", () => voltearCarta(index, cardElement));
+                tablero.appendChild(cardElement);
+            });
+        }
+
+        function voltearCarta(index, element) {
+            if (bloqueoTablero) return;
+            const cartaSeleccionada = cartas[index];
+
+            if (cartaSeleccionada.encontrada || element.classList.contains("volteada")) return;
+            if (primeraCarta && primeraCarta.index === index) return;
+
+            element.classList.add("volteada");
+            const inner = element.querySelector(".card-inner");
+            inner.style.transform = "rotateY(180deg)";
+
+            if (!primeraCarta) {
+                primeraCarta = { index, carta: cartaSeleccionada, element };
+                return;
+            }
+
+            segundaCarta = { index, carta: cartaSeleccionada, element };
+            intentos++;
+            document.getElementById("contador-intentos").innerText = intentos;
+
+            verificarPareja();
+        }
+
+        function verificarPareja() {
+            const coinciden = primeraCarta.carta.pairId === segundaCarta.carta.pairId;
+
+            if (coinciden) {
+                cartas[primeraCarta.index].encontrada = true;
+                cartas[segundaCarta.index].encontrada = true;
+
+                const estiloPareja = primeraCarta.carta.estilo;
+
+                const inner1 = primeraCarta.element.querySelector(".card-inner");
+                const inner2 = segundaCarta.element.querySelector(".card-inner");
+
+                inner1.className = `relative w-full h-full duration-500 transform-style-3d card-inner rounded-2xl shadow-lg border-4 ${estiloPareja.border} ${estiloPareja.bg} transition-all`;
+                inner2.className = `relative w-full h-full duration-500 transform-style-3d card-inner rounded-2xl shadow-lg border-4 ${estiloPareja.border} ${estiloPareja.bg} transition-all`;
+
+                parejasEncontradas++;
+                document.getElementById("contador-parejas").innerText = `${parejasEncontradas} / ${totalParejasObjetivo}`;
+
+                limpiarSeleccion();
+
+                if (parejasEncontradas === totalParejasObjetivo) {
+                    clearInterval(temporizadorIntervalo);
+                    setTimeout(mostrarVictoria, 600);
+                }
+            } else {
+                bloqueoTablero = true;
+                setTimeout(() => {
+                    primeraCarta.element.querySelector(".card-inner").style.transform = "rotateY(0deg)";
+                    primeraCarta.element.classList.remove("volteada");
+
+                    segundaCarta.element.querySelector(".card-inner").style.transform = "rotateY(0deg)";
+                    segundaCarta.element.classList.remove("volteada");
+
+                    limpiarSeleccion();
+                }, 1000);
+            }
+        }
+
+        function limpiarSeleccion() {
+            primeraCarta = null;
+            segundaCarta = null;
+            bloqueoTablero = false;
+        }
+
+        function mostrarVictoria() {
+            let mins = Math.floor(tiempoSegundos / 60).toString().padStart(2, '0');
+            let segs = (tiempoSegundos % 60).toString().padStart(2, '0');
+            
+            document.getElementById("stat-tiempo").innerText = `${mins}:${segs}`;
+            document.getElementById("stat-intentos").innerText = intentos;
+            document.getElementById("modal-victoria").classList.remove("hidden");
+        }
+
+        function volverSeleccion() {
+            if (temporizadorIntervalo) clearInterval(temporizadorIntervalo);
+            document.getElementById("pantalla-juego").classList.add("hidden");
+            document.getElementById("modal-victoria").classList.add("hidden");
+            document.getElementById("pantalla-seleccion").classList.remove("hidden");
+        }
+
+        function reiniciarPartida() {
+            document.getElementById("modal-victoria").classList.add("hidden");
+            iniciarJuego(totalParejasObjetivo);
+        }
+
+        document.addEventListener("click", (e) => {
+            if (e.target.matches('#boton-salir') || e.target.closest('#boton-salir')) {
+                e.preventDefault();
+                localStorage.removeItem("xadi_sesion");
+                window.location.replace("/login");
+            }
+        });
+    </script>
+</body>
+</html>
