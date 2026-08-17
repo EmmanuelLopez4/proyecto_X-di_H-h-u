@@ -318,6 +318,27 @@ def pagina_equipo():
         "error": "No se encontró equipo.html en la carpeta frontend"
     }
 
+@app.get("/historia", tags=["Interfaz Gráfica"])
+def pagina_historia():
+    """
+    Ruta:
+    http://localhost:8000/historia
+    Muestra la pantalla con la historia y contexto académico del otomí.
+    """
+    ruta_historia = os.path.join(
+        os.path.dirname(__file__),
+        "frontend",
+        "historia.html"
+    )
+
+    if os.path.exists(ruta_historia):
+        return FileResponse(ruta_historia)
+
+    return {
+        "status": "Online",
+        "error": "No se encontró historia.html en la carpeta frontend"
+    }
+
 @app.get("/consejos", tags=["Interfaz Gráfica"])
 def pagina_consejos():
     """
