@@ -200,18 +200,40 @@
 
     <script src="/frontend/js/aprendizaje.js?v=6"></script>
     <script>
-function toggleMenu() {
-    const menu = document.getElementById("menu-lateral");
-    const icono = document.getElementById("icono-menu");
+    function toggleMenu() {
+        const menu = document.getElementById("menu-lateral");
+        const icono = document.getElementById("icono-menu");
+        
+        if (menu.classList.contains("hidden")) {
+            menu.classList.remove("hidden");
+            icono.innerText = "menu_open";
+        } else {
+            menu.classList.add("hidden");
+            icono.innerText = "menu";
+        }
+        }
+    </script>
 
-    if (menu.classList.contains("hidden")) {
-        menu.classList.remove("hidden");
-        icono.innerText = "menu_open";
-    } else {
-        menu.classList.add("hidden");
-        icono.innerText = "menu";
-    }
-}
-</script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const rutaActual = window.location.pathname;
+        
+        const enlacesMenu = document.querySelectorAll("nav a:not(#boton-salir)");
+        
+        enlacesMenu.forEach(enlace => {
+            const rutaEnlace = enlace.getAttribute("href");
+            
+            enlace.classList.remove("text-primary", "font-bold", "border-b-2", "border-primary");
+            enlace.classList.add("text-on-surface-variant", "font-medium", "hover:text-primary");
+            
+            if (rutaEnlace === rutaActual) {
+                enlace.classList.remove("text-on-surface-variant", "font-medium", "hover:text-primary");
+                enlace.classList.add("text-primary", "font-bold", "border-b-2", "border-primary");
+            }
+        });
+        });
+    </script>
+
 </body>
 </html>
